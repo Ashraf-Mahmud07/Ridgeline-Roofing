@@ -91,7 +91,7 @@ export default async function CityPage({
         )}
       />
       <Header />
-      <main>
+      <main id="main-content">
         <PageHero
           crumbs={[
             { name: "Home", href: "/" },

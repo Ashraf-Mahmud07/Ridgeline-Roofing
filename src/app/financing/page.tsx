@@ -42,7 +42,7 @@ export default function FinancingPage() {
         )}
       />
       <Header />
-      <main>
+      <main id="main-content">
         <PageHero
           crumbs={[{ name: "Home", href: "/" }, { name: "Financing" }]}
           title="A new roof from $159 a month."

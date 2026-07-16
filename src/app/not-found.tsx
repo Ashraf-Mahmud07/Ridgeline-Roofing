@@ -6,7 +6,7 @@ export default function NotFound() {
   return (
     <>
       <SlimHeaderCta />
-      <main
+      <main id="main-content"
         aria-label="Page not found"
         className="flex min-h-[calc(100vh-155px)] flex-col items-center justify-center px-6 py-16 text-center md:px-14"
       >

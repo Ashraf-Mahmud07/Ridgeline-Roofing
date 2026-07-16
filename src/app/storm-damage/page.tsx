@@ -51,7 +51,7 @@ export default function StormDamagePage() {
         )}
       />
       <Header />
-      <main>
+      <main id="main-content">
         {/* ===== Emergency banner ===== */}
         <div className="flex items-center justify-center gap-3.5 bg-terracotta px-6 py-3.5 text-center text-[15px] font-semibold text-cream md:px-14">
           <span aria-hidden className="hidden h-[9px] w-[9px] flex-none rounded-full bg-cream sm:block" />

@@ -76,7 +76,7 @@ export default function ResidentialRoofingPage() {
         )}
       />
       <Header />
-      <main>
+      <main id="main-content">
         <PageHero
           crumbs={[{ name: "Home", href: "/" }, { name: "Residential Roofing" }]}
           title="Your home, under a roof built right."

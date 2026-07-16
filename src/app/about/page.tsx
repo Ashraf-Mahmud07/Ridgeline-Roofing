@@ -47,7 +47,7 @@ export default function AboutPage() {
         )}
       />
       <Header />
-      <main>
+      <main id="main-content">
         {/* ===== Hero ===== */}
         <section aria-label="Page introduction" className="grid border-b border-line lg:grid-cols-[1.05fr_0.95fr]">
           <div className="flex flex-col gap-[22px] px-6 pb-12 pt-11 md:px-10 lg:px-14">
@@ -101,11 +101,20 @@ export default function AboutPage() {
 
         {/* ===== Timeline ===== */}
         <Section label="Our story" className="grid gap-13 pb-14 pt-13 lg:grid-cols-[0.8fr_1.2fr]">
-          <div>
+          <div className="lg:sticky lg:top-24 lg:self-start">
             <Eyebrow className="mb-3">Our story</Eyebrow>
             <h2 className="m-0 text-3xl font-[650] tracking-[-0.02em] md:text-4xl">
               Built one roof at a time
             </h2>
+            <p className="mb-0 mt-4 max-w-[44ch] text-[15.5px] leading-[1.6] text-muted">
+              No private equity, no franchise playbook — just two decades of showing up when
+              we said we would. Most of our work still comes the old way: a neighbor watched
+              us re-roof the house next door.
+            </p>
+            <div className="mt-6 flex gap-10">
+              <Stat value="68%" label="Jobs from referrals" size="sm" />
+              <Stat value="1" label="Owner, since day one" size="sm" />
+            </div>
           </div>
           <div className="flex flex-col border-l border-line">
             {aboutMilestones.map((m) => (

@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { navItems } from "@/components/layout/nav-links";
+import { mobileNavGroups } from "@/components/layout/nav-links";
 
-/** Hamburger + slide-down panel for viewports below lg. */
+/** Hamburger + slide-down panel for viewports below lg — every page reachable. */
 export function MobileNav({
   phone,
   phoneHref,
@@ -27,17 +27,24 @@ export function MobileNav({
         <span className={`block h-[2px] w-6 bg-ink transition-transform ${open ? "-translate-y-[7px] -rotate-45" : ""}`} />
       </button>
       {open && (
-        <div className="absolute inset-x-0 top-full z-50 border-b border-line bg-cream px-6 pb-8 pt-2 shadow-sm">
-          <nav aria-label="Mobile" className="flex flex-col">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="border-b border-line py-4 text-base font-medium text-ink"
-              >
-                {item.label}
-              </Link>
+        <div className="absolute inset-x-0 top-full z-50 max-h-[calc(100vh-70px)] overflow-y-auto border-b border-line bg-cream px-6 pb-8 pt-2 shadow-sm">
+          <nav aria-label="Mobile" className="grid gap-x-8 sm:grid-cols-2">
+            {mobileNavGroups.map((group) => (
+              <div key={group.title}>
+                <div className="pb-1 pt-4 text-xs font-semibold uppercase tracking-label text-faint">
+                  {group.title}
+                </div>
+                {group.links.map((link) => (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className="block border-b border-line py-3 text-[15px] font-medium text-ink"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
             ))}
           </nav>
           <div className="mt-6 flex flex-col gap-3">

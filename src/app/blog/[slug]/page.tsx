@@ -57,7 +57,7 @@ export default async function BlogArticlePage({
         )}
       />
       <Header />
-      <main>
+      <main id="main-content">
         {/* ===== Article header ===== */}
         <Section label="Article header" className="max-w-[860px] pb-9 pt-11">
           <Breadcrumbs
@@ -120,15 +120,39 @@ export default async function BlogArticlePage({
                   </aside>
                 )}
                 {i === 1 && (
-                  <div className="relative h-[260px]">
-                    <Image
-                      src={images.deskReport.src}
-                      alt="Chart of typical roof replacement cost ranges by material"
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 60vw"
-                      className="object-cover"
-                    />
-                  </div>
+                  <figure className="m-0">
+                    <div className="overflow-x-auto border border-line">
+                      <table className="w-full min-w-[520px] border-collapse text-[14.5px]">
+                        <thead>
+                          <tr className="bg-panel-soft text-left">
+                            <th scope="col" className="border-b border-line px-4 py-3 text-xs font-semibold uppercase tracking-label text-faint">Material</th>
+                            <th scope="col" className="border-b border-line px-4 py-3 text-xs font-semibold uppercase tracking-label text-faint">Installed cost*</th>
+                            <th scope="col" className="border-b border-line px-4 py-3 text-xs font-semibold uppercase tracking-label text-faint">Per sq ft</th>
+                            <th scope="col" className="border-b border-line px-4 py-3 text-xs font-semibold uppercase tracking-label text-faint">Lifespan</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {[
+                            ["Architectural shingle", "$12,000–$19,500", "$4.00–$6.50", "25–30 yrs"],
+                            ["Class 4 impact-rated shingle", "$13,500–$22,500", "$4.50–$7.50", "25–30 yrs"],
+                            ["Standing-seam metal", "$27,000–$45,000", "$9.00–$15.00", "40–70 yrs"],
+                            ["Concrete / clay tile", "$33,000–$60,000", "$11.00–$20.00", "50+ yrs"],
+                            ["TPO / EPDM (flat)", "—", "$7.00–$11.00", "20–30 yrs"],
+                          ].map((row) => (
+                            <tr key={row[0]} className="border-b border-line last:border-b-0">
+                              <th scope="row" className="px-4 py-3 text-left font-semibold">{row[0]}</th>
+                              <td className="px-4 py-3 text-muted">{row[1]}</td>
+                              <td className="px-4 py-3 text-muted">{row[2]}</td>
+                              <td className="px-4 py-3 text-muted">{row[3]}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                    <figcaption className="mt-2 text-[12.5px] text-faint">
+                      *Typical 30-square Denver-metro home, 2026 — permitted, warrantied, installed.
+                    </figcaption>
+                  </figure>
                 )}
               </div>
             ))}

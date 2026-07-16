@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Stat } from "@/components/ui/Stat";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Section, HairlineGrid } from "@/components/sections/Section";
+import { ZipCheck } from "@/components/sections/ZipCheck";
 import { EmergencyBanner } from "@/components/sections/EmergencyBanner";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { cities } from "@/lib/cities";
@@ -39,7 +40,7 @@ export default function ServiceAreasPage() {
         )}
       />
       <Header />
-      <main>
+      <main id="main-content">
         {/* ===== Hero + map ===== */}
         <section aria-label="Page introduction" className="grid border-b border-line lg:grid-cols-2">
           <div className="flex flex-col gap-5 px-6 pb-12 pt-11 md:px-10 lg:px-14">
@@ -57,22 +58,7 @@ export default function ServiceAreasPage() {
               <Stat value="< 45 min" label="Avg. emergency response" />
               <Stat value="5" label="Local crews" />
             </div>
-            <form
-              className="mt-2 flex flex-wrap items-center gap-3"
-              aria-label="Check coverage by ZIP code"
-            >
-              <input
-                placeholder="Enter your ZIP code"
-                inputMode="numeric"
-                className="w-[220px] border-[1.5px] border-line-strong bg-white px-[18px] py-3.5 text-[15px] text-ink outline-none focus:border-ink"
-              />
-              <button
-                type="button"
-                className="bg-ink px-[26px] py-[15px] text-[15px] font-semibold text-cream transition-colors hover:bg-terracotta"
-              >
-                Check coverage
-              </button>
-            </form>
+            <ZipCheck />
           </div>
           <div className="relative min-h-[300px] border-line lg:min-h-[420px] lg:border-l">
             <Image

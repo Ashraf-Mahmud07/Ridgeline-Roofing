@@ -61,7 +61,7 @@ export default async function ProjectDetailPage({
         )}
       />
       <Header />
-      <main>
+      <main id="main-content">
         {/* ===== Hero image ===== */}
         <section aria-label="Project photo" className="relative h-[320px] border-b border-line md:h-[440px]">
           <Image
@@ -144,7 +144,7 @@ export default async function ProjectDetailPage({
           <h2 className="mb-6 mt-0 text-[26px] font-[650] tracking-[-0.02em] md:text-[32px]">
             Before &amp; after
           </h2>
-          <BeforeAfter before="homeBrickAged" after="homeMetalRoof" height={320} />
+          <BeforeAfter before="roofRepairCrew" after="homeMetalRoof" height={320} />
         </Section>
 
         {/* ===== Gallery ===== */}

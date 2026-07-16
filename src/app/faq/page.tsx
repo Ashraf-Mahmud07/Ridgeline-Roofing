@@ -36,7 +36,7 @@ export default function FaqPage() {
         )}
       />
       <Header />
-      <main>
+      <main id="main-content">
         <Section label="FAQ" padded={false} className="pt-11">
           <div className="px-6 md:px-10 lg:px-14">
             <Breadcrumbs

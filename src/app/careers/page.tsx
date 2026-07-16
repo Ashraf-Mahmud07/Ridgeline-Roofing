@@ -38,7 +38,7 @@ export default function CareersPage() {
         )}
       />
       <Header />
-      <main>
+      <main id="main-content">
         <PageHero
           crumbs={[
             { name: "Home", href: "/" },

@@ -41,7 +41,7 @@ export default function ContactPage() {
         )}
       />
       <Header />
-      <main>
+      <main id="main-content">
         <Section label="Contact" padded={false} className="grid lg:grid-cols-[0.95fr_1.05fr]">
           {/* left: info */}
           <div className="flex flex-col gap-7 border-line px-6 pb-13 pt-11 md:px-10 lg:border-r lg:px-14">

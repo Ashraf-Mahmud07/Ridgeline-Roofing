@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useMemo, useState, useTransition } from "react";
 import Link from "next/link";
 import { bookInspection } from "@/app/actions";
 
@@ -25,14 +25,22 @@ const SERVICE_OPTIONS = [
 const MATERIAL_OPTIONS = ["Asphalt shingle", "Metal", "Tile", "Flat / membrane", "Not sure"];
 const AGE_OPTIONS = ["0–10 yrs", "10–20 yrs", "20+ yrs", "Not sure"];
 const LEAK_OPTIONS = ["Yes, active", "Stains only", "No"];
-const DAY_OPTIONS = [
-  { dow: "Thu", date: "Jul 16" },
-  { dow: "Fri", date: "Jul 17" },
-  { dow: "Sat", date: "Jul 18" },
-  { dow: "Mon", date: "Jul 20" },
-  { dow: "Tue", date: "Jul 21" },
-];
 const TIME_OPTIONS = ["8–10 am", "10 am–12 pm", "1–3 pm", "3–5 pm"];
+
+/** Next five working days (Mon–Sat), starting tomorrow. */
+function nextInspectionDays(): { dow: string; date: string }[] {
+  const days: { dow: string; date: string }[] = [];
+  const d = new Date();
+  while (days.length < 5) {
+    d.setDate(d.getDate() + 1);
+    if (d.getDay() === 0) continue; // closed Sundays
+    days.push({
+      dow: d.toLocaleDateString("en-US", { weekday: "short" }),
+      date: d.toLocaleDateString("en-US", { month: "short", day: "numeric" }),
+    });
+  }
+  return days;
+}
 
 const PHONE_RE = /^[+()\-.\s\d]{7,20}$/;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -122,6 +130,8 @@ export function BookingWizard() {
   const [form, setForm] = useState<FormState>(initialForm);
   const [error, setError] = useState("");
   const [pending, startTransition] = useTransition();
+  // Step 5 only renders after user interaction, so this is always computed client-side.
+  const dayOptions = useMemo(nextInspectionDays, []);
 
   const pick = (key: keyof FormState, value: string) => () =>
     setForm((f) => ({ ...f, [key]: value }));
@@ -384,7 +394,7 @@ export function BookingWizard() {
               <div>
                 <FieldLabel>Day</FieldLabel>
                 <div className="flex flex-wrap gap-2.5">
-                  {DAY_OPTIONS.map((opt) => {
+                  {dayOptions.map((opt) => {
                     const on = form.day === opt.date;
                     return (
                       <button

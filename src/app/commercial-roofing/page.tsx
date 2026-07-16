@@ -50,7 +50,7 @@ export default function CommercialRoofingPage() {
         )}
       />
       <Header />
-      <main>
+      <main id="main-content">
         <PageHero
           crumbs={[{ name: "Home", href: "/" }, { name: "Commercial Roofing" }]}
           title="Roofing that protects your P&L, too."

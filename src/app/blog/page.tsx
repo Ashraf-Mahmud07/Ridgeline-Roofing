@@ -38,7 +38,7 @@ export default function BlogPage() {
         )}
       />
       <Header />
-      <main>
+      <main id="main-content">
         {/* ===== Header + filters ===== */}
         <Section label="Learning Center" padded={false} className="pt-11">
           <div className="px-6 md:px-10 lg:px-14">

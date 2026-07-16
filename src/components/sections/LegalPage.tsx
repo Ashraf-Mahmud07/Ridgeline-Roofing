@@ -22,7 +22,7 @@ export function LegalPage({
   return (
     <>
       <SlimHeaderCta sticky />
-      <main className="mx-auto grid max-w-[1200px] gap-10 px-6 pb-16 pt-11 md:px-10 lg:grid-cols-[280px_1fr] lg:gap-16 lg:px-14">
+      <main id="main-content" className="mx-auto grid max-w-[1200px] gap-10 px-6 pb-16 pt-11 md:px-10 lg:grid-cols-[280px_1fr] lg:gap-16 lg:px-14">
         <div>
           <nav aria-label="Legal documents" className="flex flex-col lg:sticky lg:top-[88px]">
             <div className="border-b border-line pb-3 text-xs font-semibold uppercase tracking-[0.1em] text-faint">

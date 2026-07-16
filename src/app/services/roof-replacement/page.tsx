@@ -90,7 +90,7 @@ export default function RoofReplacementPage() {
         )}
       />
       <Header />
-      <main>
+      <main id="main-content">
         <PageHero
           crumbs={[
             { name: "Home", href: "/" },

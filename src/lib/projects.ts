@@ -67,11 +67,11 @@ export const projectDetail = {
   ],
   hero: "homeMetalRoof" as ImageKey,
   gallery: [
-    { image: "homeModernEvening" as ImageKey, label: "Wide shot — finished roofline", span: true },
-    { image: "workerMetalPanels" as ImageKey, label: "Seam detail" },
-    { image: "crewTimberFraming" as ImageKey, label: "Crew at work" },
-    { image: "rooferOnShingles" as ImageKey, label: "Flashing detail" },
-    { image: "homeModernMetal" as ImageKey, label: "Ridge vent detail" },
+    { image: "homeModernEvening" as ImageKey, label: "Finished elevation at dusk", span: true },
+    { image: "homeMetalRoof" as ImageKey, label: "Standing-seam panels and porch line" },
+    { image: "crewTimberFraming" as ImageKey, label: "Crew during structural checks" },
+    { image: "roofConstructionAerial" as ImageKey, label: "Deck preparation from above" },
+    { image: "rooferOnShingles" as ImageKey, label: "Detail work at the ridge" },
   ],
   related: [
     { slug: "applewood-two-story", title: "Applewood Two-Story", meta: "Shingle · Wheat Ridge", image: "homeSuburbanDusk2" as ImageKey },

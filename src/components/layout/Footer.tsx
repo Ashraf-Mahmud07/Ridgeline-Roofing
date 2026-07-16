@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
+import { MobileCtaBar } from "@/components/layout/MobileCtaBar";
 import { siteConfig } from "@/lib/site-config";
 
 const serviceLinks = [
@@ -8,6 +9,7 @@ const serviceLinks = [
   { label: "Storm & Insurance", href: "/storm-damage" },
   { label: "Commercial", href: "/commercial-roofing" },
   { label: "Gutters & Skylights", href: "/services/roof-replacement" },
+  { label: "Free Inspection", href: "/book-an-inspection" },
 ];
 
 const companyLinks = [
@@ -15,7 +17,10 @@ const companyLinks = [
   { label: "Projects", href: "/projects" },
   { label: "Financing", href: "/financing" },
   { label: "Service Areas", href: "/service-areas" },
+  { label: "Learning Center", href: "/blog" },
+  { label: "FAQ", href: "/faq" },
   { label: "Careers", href: "/careers" },
+  { label: "Contact", href: "/contact" },
 ];
 
 function ColumnTitle({ children }: { children: React.ReactNode }) {
@@ -79,6 +84,9 @@ export function Footer() {
           </Link>
         </div>
       </div>
+      {/* keep content clear of the fixed mobile CTA bar */}
+      <div aria-hidden className="h-14 lg:hidden" />
+      <MobileCtaBar />
     </footer>
   );
 }

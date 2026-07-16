@@ -38,7 +38,7 @@ export default function ProjectsPage() {
         )}
       />
       <Header />
-      <main>
+      <main id="main-content">
         {/* ===== Header + filters ===== */}
         <Section label="Projects" padded={false} className="pt-11">
           <div className="px-6 md:px-10 lg:px-14">
@@ -72,7 +72,7 @@ export default function ProjectsPage() {
               Before &amp; after
             </h2>
             <span className="text-[13.5px] text-faint">
-              Same roof, same angle — one day apart.
+              Tear-off to finished system — transformations from recent jobs.
             </span>
           </div>
           <BeforeAfter before="homeBrickAged" after="homeBrickNew" />

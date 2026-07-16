@@ -9,6 +9,9 @@ import { siteConfig } from "@/lib/site-config";
 export function Header() {
   return (
     <header>
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
       <UtilityBar />
       <div className="sticky top-0 z-50 border-b border-line bg-cream">
         <div className="relative flex items-center justify-between px-6 py-4 md:px-10 lg:px-14">

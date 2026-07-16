@@ -15,7 +15,7 @@ export default function SearchPage() {
   return (
     <>
       <SlimHeaderCta sticky />
-      <main>
+      <main id="main-content">
         <SearchClient />
       </main>
       <SlimFooter />

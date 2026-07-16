@@ -15,7 +15,7 @@
 
   /* Text */
   --color-muted: #5b564e; /* body copy */
-  --color-faint: #8a8375; /* metadata, breadcrumbs */
+  --color-faint: #767061; /* metadata, breadcrumbs — darkened from the design's #8a8375 to pass WCAG AA (4.6:1 on cream) */
   --color-taupe: #b3ab9a; /* light text on dark bands */
 
   /* Lines */
@@ -45,11 +45,37 @@
   --tracking-wordmark: 0.04em;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--color-cream);
   color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+}
+
+/* Visible keyboard focus everywhere, without polluting mouse interaction */
+:focus-visible {
+  outline: 2px solid var(--color-terracotta);
+  outline-offset: 2px;
+}
+
+/* Skip link — hidden until focused */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 100;
+  background: var(--color-ink);
+  color: var(--color-cream);
+  padding: 12px 20px;
+  font-weight: 600;
+  font-size: 14px;
+}
+.skip-link:focus {
+  left: 12px;
+  top: 12px;
 }
 
 h1,

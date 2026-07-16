@@ -29,7 +29,7 @@ export default function BookInspectionPage() {
         )}
       />
       <SlimHeader />
-      <main>
+      <main id="main-content">
         <BookingWizard />
       </main>
     </>

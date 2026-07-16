@@ -66,13 +66,13 @@ export default function HomePage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(faqSchema(homeFaqs))} />
       <Header />
-      <main>
+      <main id="main-content">
         {/* ===== Hero ===== */}
         <Section label="Hero" padded={false} className="grid lg:grid-cols-[1.05fr_0.95fr]">
           <div className="flex flex-col justify-between gap-9 px-6 pb-13 pt-15 md:px-10 lg:px-14">
             <div>
               <Eyebrow className="mb-[18px]">Residential &amp; Commercial Roofing</Eyebrow>
-              <h1 className="display-condensed m-0 text-[44px] font-[650] leading-none tracking-[-0.025em] md:text-[62px]">
+              <h1 className="display-condensed m-0 text-[44px] font-[650] leading-[0.98] tracking-[-0.025em] md:text-[58px] xl:text-[72px]">
                 The roof over everything you love.
               </h1>
               <p className="mb-0 mt-5 max-w-[46ch] text-lg leading-[1.55] text-muted">

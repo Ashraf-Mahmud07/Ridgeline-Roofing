@@ -20,7 +20,7 @@ export const homeFaqs: Faq[] = [
   },
   {
     q: "What warranty do you offer?",
-    a: "Manufacturer material warranties up to 50 years, plus our own workmanship warranty covering installation — both in writing and transferable if you sell.",
+    a: "Manufacturer material warranties up to 50 years, plus our own 15-year workmanship warranty covering installation — both in writing and transferable if you sell.",
   },
 ];
 

@@ -31,53 +31,24 @@ export async function sendContactMessage(payload: ContactPayload): Promise<Actio
 }
 
 export type BookingPayload = {
-  property: string;
-  service: string;
-  material: string;
-  age: string;
-  leak: string;
-  address: string;
-  city: string;
-  zip: string;
-  day: string;
-  time: string;
-  firstName: string;
-  lastName: string;
+  concern: string;
+  name: string;
   phone: string;
-  email: string;
+  address: string;
+  preferredDay: string;
 };
 
-/** Inspection-booking submission from the multi-step wizard. */
+/** Inspection-booking submission from the two-step booking modal. */
 export async function bookInspection(payload: BookingPayload): Promise<ActionResult> {
-  const required: (keyof BookingPayload)[] = [
-    "property",
-    "service",
-    "material",
-    "age",
-    "leak",
-    "address",
-    "city",
-    "zip",
-    "day",
-    "time",
-    "firstName",
-    "phone",
-    "email",
-  ];
-  for (const key of required) {
-    if (!payload[key]?.trim()) {
-      return { ok: false, error: `Missing required field: ${key}` };
-    }
+  if (!payload.concern.trim() || !payload.name.trim() || !payload.phone.trim() || !payload.address.trim()) {
+    return { ok: false, error: "Name, phone, and address are required." };
   }
   if (!PHONE_RE.test(payload.phone.trim())) {
     return { ok: false, error: "That phone number doesn't look right." };
   }
-  if (!EMAIL_RE.test(payload.email.trim())) {
-    return { ok: false, error: "That email address doesn't look right." };
-  }
 
   // TODO: connect email provider + scheduling system (calendar/CRM) here.
-  console.log("[booking] inspection booked", {
+  console.log("[booking] inspection requested", {
     ...payload,
     address: "[redacted in logs]",
   });
