@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+/*
+  Ridgeline Roofing design system — extracted from the design HTML exports.
+  Editorial layout on warm cream, ink text, terracotta accent, zero border-radius.
+*/
+@theme {
+  /* Surfaces */
+  --color-cream: #faf8f4; /* page background */
+  --color-ink: #2b2926; /* primary text / dark bands */
+  --color-ink-deep: #242220; /* footer background */
+  --color-panel: #f1ede4; /* selected option fill */
+  --color-panel-soft: #f5f2ea; /* info/summary panels */
+  --color-hover-cream: #f4f0e8; /* card hover fill */
+
+  /* Text */
+  --color-muted: #5b564e; /* body copy */
+  --color-faint: #8a8375; /* metadata, breadcrumbs */
+  --color-taupe: #b3ab9a; /* light text on dark bands */
+
+  /* Lines */
+  --color-line: #e5e0d6; /* hairline borders on cream */
+  --color-line-strong: #cdc6b8; /* outline buttons, inputs */
+  --color-line-dark: #3a3733; /* footer divider */
+  --color-line-dark-2: #4a453e; /* dark-band divider */
+  --color-line-dark-3: #5a544b; /* outline buttons on dark */
+
+  /* Accent */
+  --color-terracotta: #b45338;
+  --color-terracotta-deep: #8f3f28; /* accent hover */
+  --color-terracotta-soft: #d98a6a; /* eyebrows on dark */
+
+  /* States */
+  --color-success: #7a8a5c;
+  --color-disabled: #b8b2a5;
+
+  /* Placeholder texture tones (trust badges, avatar discs) */
+  --color-texture-a: #ece7dd;
+  --color-texture-b: #e3ddd0;
+
+  --font-sans: var(--font-archivo), "Archivo", sans-serif;
+
+  --tracking-eyebrow: 0.14em;
+  --tracking-label: 0.12em;
+  --tracking-wordmark: 0.04em;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+/* Condensed display headings — the design sets font-stretch: 95% on hero/h1 type */
+.display-condensed {
+  font-stretch: 95%;
+}
+
+/* Diagonal placeholder texture used for not-yet-real assets (badge slots, avatars) */
+.texture {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--color-texture-a) 0 12px,
+    var(--color-texture-b) 12px 24px
+  );
+}
+.texture-fine {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--color-texture-a) 0 6px,
+    var(--color-texture-b) 6px 12px
+  );
+}
