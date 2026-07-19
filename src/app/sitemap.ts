@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site-config";
 import { projects } from "@/lib/projects";
 import { cities } from "@/lib/cities";
-import { posts } from "@/lib/posts";
+import { articles } from "@/lib/posts";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteConfig.url;
@@ -45,8 +45,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const postRoutes: MetadataRoute.Sitemap = posts.map((p) => ({
-    url: `${base}/blog/${p.slug}`,
+  const postRoutes: MetadataRoute.Sitemap = Object.keys(articles).map((slug) => ({
+    url: `${base}/blog/${slug}`,
     lastModified: now,
     changeFrequency: "monthly",
     priority: 0.6,

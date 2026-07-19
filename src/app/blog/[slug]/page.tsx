@@ -1,20 +1,17 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Section } from "@/components/sections/Section";
-import { posts, article } from "@/lib/posts";
+import { posts, featuredPost, articles } from "@/lib/posts";
 import { images } from "@/lib/images";
 import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 
-/**
- * The design ships one worked article template; every post slug renders it
- * until real editorial content is written.
- */
 export function generateStaticParams() {
-  return posts.map((p) => ({ slug: p.slug }));
+  return Object.keys(articles).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -23,19 +20,29 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+  const article = articles[slug];
+  if (!article) return {};
   return {
     title: article.title,
-    description:
-      "Size, pitch, material, decking condition, and the four line items contractors hide — a transparent breakdown of what a new roof actually costs in 2026.",
+    description: article.description,
     alternates: { canonical: `/blog/${slug}` },
     openGraph: {
       type: "article",
       title: article.title,
+      description: article.description,
       url: `/blog/${slug}`,
       images: [{ url: images[article.cover].src, alt: images[article.cover].alt }],
     },
   };
 }
+
+const COST_ROWS = [
+  ["Architectural shingle", "$12,000–$19,500", "$4.00–$6.50", "25–30 yrs"],
+  ["Class 4 impact-rated shingle", "$13,500–$22,500", "$4.50–$7.50", "25–30 yrs"],
+  ["Standing-seam metal", "$27,000–$45,000", "$9.00–$15.00", "40–70 yrs"],
+  ["Concrete / clay tile", "$33,000–$60,000", "$11.00–$20.00", "50+ yrs"],
+  ["TPO / EPDM (flat)", "—", "$7.00–$11.00", "20–30 yrs"],
+];
 
 export default async function BlogArticlePage({
   params,
@@ -43,7 +50,13 @@ export default async function BlogArticlePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  const article = articles[slug];
+  if (!article) notFound();
   const cover = images[article.cover];
+  const related = [featuredPost, ...posts]
+    .filter((p) => p.slug !== slug)
+    .slice(0, 3);
+
   return (
     <>
       <script
@@ -109,7 +122,7 @@ export default async function BlogArticlePage({
                   {s.heading}
                 </h2>
                 <p className="m-0 text-base leading-[1.7] text-[#3d3933]">{s.body}</p>
-                {i === 0 && (
+                {i === 0 && article.ruleOfThumb && (
                   <aside className="flex flex-col gap-2 border border-line bg-panel-soft px-[26px] py-[22px]">
                     <div className="text-xs font-semibold uppercase tracking-[0.1em] text-terracotta">
                       Rule of thumb
@@ -119,7 +132,7 @@ export default async function BlogArticlePage({
                     </p>
                   </aside>
                 )}
-                {i === 1 && (
+                {i === 1 && article.costTable && (
                   <figure className="m-0">
                     <div className="overflow-x-auto border border-line">
                       <table className="w-full min-w-[520px] border-collapse text-[14.5px]">
@@ -132,13 +145,7 @@ export default async function BlogArticlePage({
                           </tr>
                         </thead>
                         <tbody>
-                          {[
-                            ["Architectural shingle", "$12,000–$19,500", "$4.00–$6.50", "25–30 yrs"],
-                            ["Class 4 impact-rated shingle", "$13,500–$22,500", "$4.50–$7.50", "25–30 yrs"],
-                            ["Standing-seam metal", "$27,000–$45,000", "$9.00–$15.00", "40–70 yrs"],
-                            ["Concrete / clay tile", "$33,000–$60,000", "$11.00–$20.00", "50+ yrs"],
-                            ["TPO / EPDM (flat)", "—", "$7.00–$11.00", "20–30 yrs"],
-                          ].map((row) => (
+                          {COST_ROWS.map((row) => (
                             <tr key={row[0]} className="border-b border-line last:border-b-0">
                               <th scope="row" className="px-4 py-3 text-left font-semibold">{row[0]}</th>
                               <td className="px-4 py-3 text-muted">{row[1]}</td>
@@ -160,9 +167,9 @@ export default async function BlogArticlePage({
             {/* inline CTA */}
             <div className="mt-2.5 flex flex-col items-start justify-between gap-5 bg-ink px-8 py-7 text-cream sm:flex-row sm:items-center">
               <div>
-                <div className="mb-1 text-[19px] font-[650]">Want a real number for your roof?</div>
+                <div className="mb-1 text-[19px] font-[650]">Want a real answer for your roof?</div>
                 <div className="text-sm text-taupe">
-                  Free inspection, fixed written price. No estimate-that-grows.
+                  Free inspection, written photo report. No estimate-that-grows.
                 </div>
               </div>
               <Link
@@ -217,7 +224,7 @@ export default async function BlogArticlePage({
             </Link>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {article.related.map((p) => {
+            {related.map((p) => {
               const img = images[p.image];
               return (
                 <Link key={p.slug} href={`/blog/${p.slug}`} className="flex flex-col gap-[11px] text-ink">

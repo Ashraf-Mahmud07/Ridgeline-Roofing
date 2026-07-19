@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Archivo } from "next/font/google";
 import { siteConfig } from "@/lib/site-config";
 import { roofingContractorSchema, jsonLd } from "@/lib/structured-data";
+import { BookingModalHost } from "@/components/booking/BookingModal";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -40,6 +41,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={jsonLd(roofingContractorSchema())}
         />
         {children}
+        <BookingModalHost />
       </body>
     </html>
   );

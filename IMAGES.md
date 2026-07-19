@@ -4,6 +4,10 @@ Every remote image on the site is registered in `src/lib/images.ts` and referenc
 **To swap any photo site-wide, change its URL in that one file.** All URLs were verified
 (HTTP 200 + visual relevance check) against the Unsplash/Pexels CDNs at build time.
 
+Per-slug usage on project case studies and blog articles is defined in
+`src/lib/projects.ts` (hero/gallery/before/after per project) and `src/lib/posts.ts`
+(cover per article) — the table below lists each image's primary placements.
+
 Sources: [Unsplash License](https://unsplash.com/license) · [Pexels License](https://www.pexels.com/license/) — both free for commercial use, no attribution required.
 
 ## Where each image is used

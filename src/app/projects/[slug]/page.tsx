@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
@@ -8,14 +9,10 @@ import { ProjectCard } from "@/components/ui/ProjectCard";
 import { Section } from "@/components/sections/Section";
 import { BeforeAfter } from "@/components/sections/BeforeAfter";
 import { FinalCta } from "@/components/sections/FinalCta";
-import { projects, projectDetail } from "@/lib/projects";
+import { projects, projectDetails } from "@/lib/projects";
 import { images } from "@/lib/images";
 import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 
-/**
- * The design ships a single project-detail template; every project slug renders
- * it until real per-project data is available.
- */
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
@@ -26,15 +23,17 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+  const detail = projectDetails[slug];
+  if (!detail) return {};
   return {
-    title: `${projectDetail.title}`,
-    description:
-      "A completed Golden, CO roofing project: standing-seam metal installed in 2 days with a 15-yr workmanship warranty. See before & after photos and project details.",
+    title: detail.title,
+    description: detail.summary,
     alternates: { canonical: `/projects/${slug}` },
     openGraph: {
-      title: projectDetail.title,
+      title: detail.title,
+      description: detail.summary,
       url: `/projects/${slug}`,
-      images: [{ url: images[projectDetail.hero].src, alt: images[projectDetail.hero].alt }],
+      images: [{ url: images[detail.hero].src, alt: images[detail.hero].alt }],
     },
   };
 }
@@ -45,9 +44,13 @@ export default async function ProjectDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const heroImg = images[projectDetail.hero];
-  const crumbName =
-    projects.find((p) => p.slug === slug)?.title ?? "Table Mountain Farmhouse";
+  const detail = projectDetails[slug];
+  if (!detail) notFound();
+  const entry = projects.find((p) => p.slug === slug);
+  const heroImg = images[detail.hero];
+  const related = projects.filter((p) => p.slug !== slug).slice(0, 3);
+  const crumbName = entry?.title ?? detail.title;
+
   return (
     <>
       <script
@@ -73,7 +76,7 @@ export default async function ProjectDetailPage({
             className="object-cover"
           />
           <div className="absolute bottom-8 left-6 flex flex-wrap items-center gap-2.5 md:left-14">
-            {projectDetail.tags.map((tag, i) => (
+            {detail.tags.map((tag, i) => (
               <span
                 key={tag}
                 className={`px-3 py-[5px] text-[11px] font-bold uppercase tracking-[0.08em] ${
@@ -98,9 +101,9 @@ export default async function ProjectDetailPage({
               className="mb-4"
             />
             <h1 className="display-condensed m-0 text-[32px] font-[650] tracking-[-0.025em] md:text-[42px]">
-              {projectDetail.title}
+              {detail.title}
             </h1>
-            {projectDetail.story.map((para, i) => (
+            {detail.story.map((para, i) => (
               <p
                 key={i}
                 className={`mb-0 max-w-[62ch] text-base leading-[1.65] text-muted ${
@@ -112,16 +115,16 @@ export default async function ProjectDetailPage({
             ))}
             <blockquote className="mb-0 ml-0 mr-0 mt-7 border-l-[3px] border-terracotta py-1 pl-[22px]">
               <p className="m-0 text-[17px] font-medium leading-[1.6]">
-                &ldquo;{projectDetail.quote}&rdquo;
+                &ldquo;{detail.quote}&rdquo;
               </p>
-              <div className="mt-2 text-[13.5px] text-faint">{projectDetail.quoteBy}</div>
+              <div className="mt-2 text-[13.5px] text-faint">{detail.quoteBy}</div>
             </blockquote>
           </div>
           <div className="flex flex-col px-6 pb-12 pt-10 md:px-10 lg:px-12">
             <div className="border-b border-line pb-3.5 text-xs font-semibold uppercase tracking-label text-faint">
               Project facts
             </div>
-            {projectDetail.facts.map((f) => (
+            {detail.facts.map((f) => (
               <div
                 key={f.label}
                 className="flex justify-between gap-5 border-b border-line py-[13px] text-[14.5px]"
@@ -144,7 +147,7 @@ export default async function ProjectDetailPage({
           <h2 className="mb-6 mt-0 text-[26px] font-[650] tracking-[-0.02em] md:text-[32px]">
             Before &amp; after
           </h2>
-          <BeforeAfter before="roofRepairCrew" after="homeMetalRoof" height={320} />
+          <BeforeAfter before={detail.before} after={detail.after} height={320} />
         </Section>
 
         {/* ===== Gallery ===== */}
@@ -153,7 +156,7 @@ export default async function ProjectDetailPage({
             Project gallery
           </h2>
           <div className="grid auto-rows-[180px] grid-cols-2 gap-3.5 lg:grid-cols-4">
-            {projectDetail.gallery.map((g) => {
+            {detail.gallery.map((g) => {
               const img = images[g.image];
               return (
                 <div
@@ -187,11 +190,11 @@ export default async function ProjectDetailPage({
             </Link>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {projectDetail.related.map((prj) => (
+            {related.map((prj) => (
               <ProjectCard
                 key={prj.slug}
                 title={prj.title}
-                meta={prj.meta}
+                meta={`${prj.category} · ${prj.meta}`}
                 image={prj.image}
                 href={`/projects/${prj.slug}`}
                 height={200}
