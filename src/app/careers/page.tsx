@@ -102,7 +102,7 @@ export default function CareersPage() {
         {/* ===== Final CTA (careers variant) ===== */}
         <section
           aria-label="Contact about a role"
-          className="bg-ink px-6 py-16 text-center text-cream md:px-10 lg:px-14"
+          className="shell bg-ink py-16 text-center text-cream"
         >
           <h2 className="display-condensed mx-auto my-0 max-w-[22ch] text-3xl font-[650] tracking-[-0.025em] md:text-[42px]">
             Fifteen-minute call. No forms first.

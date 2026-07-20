@@ -41,7 +41,7 @@ export default function ProjectsPage() {
       <main id="main-content">
         {/* ===== Header + filters ===== */}
         <Section label="Projects" padded={false} className="pt-11">
-          <div className="px-6 md:px-10 lg:px-14">
+          <div className="shell ">
             <Breadcrumbs
               crumbs={[{ name: "Home", href: "/" }, { name: "Projects" }]}
               className="mb-[18px]"

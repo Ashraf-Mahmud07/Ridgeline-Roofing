@@ -42,9 +42,9 @@ export default function ContactPage() {
       />
       <Header />
       <main id="main-content">
-        <Section label="Contact" padded={false} className="grid lg:grid-cols-[0.95fr_1.05fr]">
+        <Section label="Contact" className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
           {/* left: info */}
-          <div className="flex flex-col gap-7 border-line px-6 pb-13 pt-11 md:px-10 lg:border-r lg:px-14">
+          <div className="flex flex-col gap-7 py-10 md:py-12">
             <div>
               <Breadcrumbs
                 crumbs={[{ name: "Home", href: "/" }, { name: "Contact" }]}
@@ -89,7 +89,7 @@ export default function ContactPage() {
           </div>
 
           {/* right: form */}
-          <div className="px-6 pb-13 pt-11 md:px-10 lg:px-14">
+          <div className="py-10 md:py-12 lg:border-l lg:border-line lg:pl-16">
             <ContactForm />
           </div>
         </Section>

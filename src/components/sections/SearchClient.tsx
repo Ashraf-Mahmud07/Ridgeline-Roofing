@@ -83,7 +83,7 @@ export function SearchClient() {
   return (
     <>
       {/* ===== Search header ===== */}
-      <section aria-label="Search" className="border-b border-line px-6 pb-7 pt-11 md:px-10 lg:px-14">
+      <section aria-label="Search" className="shell border-b border-line pb-7 pt-11">
         <Breadcrumbs crumbs={[{ name: "Home", href: "/" }, { name: "Search" }]} className="mb-[18px]" />
         <form
           role="search"
@@ -112,7 +112,7 @@ export function SearchClient() {
       {/* ===== Results ===== */}
       <section
         aria-label="Search results"
-        className="grid gap-10 border-b border-line px-6 pb-14 pt-7 md:px-10 lg:grid-cols-[1fr_320px] lg:gap-16 lg:px-14"
+        className="shell grid gap-10 border-b border-line pb-14 pt-7 lg:grid-cols-[1fr_320px] lg:gap-16"
       >
         <div className="max-w-[680px]">
           {results.map((r) => (

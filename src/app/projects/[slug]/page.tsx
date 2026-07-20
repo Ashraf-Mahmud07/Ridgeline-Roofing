@@ -90,8 +90,8 @@ export default async function ProjectDetailPage({
         </section>
 
         {/* ===== Title + facts ===== */}
-        <Section label="Project overview" padded={false} className="grid lg:grid-cols-[1.15fr_0.85fr]">
-          <div className="border-line px-6 pb-12 pt-10 md:px-10 lg:border-r lg:px-14">
+        <Section label="Project overview" className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+          <div className="py-10 md:py-12">
             <Breadcrumbs
               crumbs={[
                 { name: "Home", href: "/" },
@@ -120,7 +120,7 @@ export default async function ProjectDetailPage({
               <div className="mt-2 text-[13.5px] text-faint">{detail.quoteBy}</div>
             </blockquote>
           </div>
-          <div className="flex flex-col px-6 pb-12 pt-10 md:px-10 lg:px-12">
+          <div className="flex flex-col py-10 md:py-12 lg:border-l lg:border-line lg:pl-16">
             <div className="border-b border-line pb-3.5 text-xs font-semibold uppercase tracking-label text-faint">
               Project facts
             </div>

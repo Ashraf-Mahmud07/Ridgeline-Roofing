@@ -1,4 +1,6 @@
-/** Page section with the design's 56px gutters and hairline bottom rule. */
+import { Check } from "lucide-react";
+
+/** Page section with generous gutters and an optional hairline bottom rule. */
 export function Section({
   label,
   className = "",
@@ -16,7 +18,7 @@ export function Section({
     <section
       aria-label={label}
       className={`${bordered ? "border-b border-line" : ""} ${
-        padded ? "px-6 md:px-10 lg:px-14" : ""
+        padded ? "shell" : ""
       } ${className}`}
     >
       {children}
@@ -24,22 +26,31 @@ export function Section({
   );
 }
 
-/** Triangle-icon benefit tile used across residential/commercial/replacement/careers. */
+/** Centered max-width wrapper matching the global `.shell` container. */
+export function Container({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return <div className={`shell ${className}`}>{children}</div>;
+}
+
+/** Benefit tile with a check-in-disc icon — rounded card with hover lift. */
 export function BenefitTile({ title, desc }: { title: string; desc: string }) {
   return (
-    <div className="flex flex-col gap-2 bg-cream px-[26px] py-6">
-      <span
-        aria-hidden
-        className="block h-7 w-7 bg-terracotta opacity-90"
-        style={{ clipPath: "polygon(50% 0,100% 100%,0 100%)" }}
-      />
-      <div className="mt-1.5 text-[17px] font-[650]">{title}</div>
-      <p className="m-0 text-sm leading-[1.55] text-muted">{desc}</p>
+    <div className="group flex flex-col gap-3 rounded-2xl border border-line bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift">
+      <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-terracotta/10 text-terracotta transition-colors group-hover:bg-terracotta group-hover:text-white">
+        <Check className="h-5 w-5" strokeWidth={2.5} />
+      </span>
+      <div className="mt-1 text-[17px] font-bold tracking-[-0.01em] text-ink">{title}</div>
+      <p className="m-0 text-sm leading-[1.6] text-muted">{desc}</p>
     </div>
   );
 }
 
-/** Hairline card grid — 1px line-colored gaps inside a hairline border. */
+/** Responsive card grid. Cards carry their own borders/shadows now. */
 export function HairlineGrid({
   cols,
   children,
@@ -54,9 +65,5 @@ export function HairlineGrid({
     3: "sm:grid-cols-2 lg:grid-cols-3",
     4: "sm:grid-cols-2 lg:grid-cols-4",
   }[cols];
-  return (
-    <div className={`grid gap-px border border-line bg-line ${colClass} ${className}`}>
-      {children}
-    </div>
-  );
+  return <div className={`grid gap-5 ${colClass} ${className}`}>{children}</div>;
 }

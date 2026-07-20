@@ -1,48 +1,71 @@
 @import "tailwindcss";
 
 /*
-  Ridgeline Roofing design system — extracted from the design HTML exports.
-  Editorial layout on warm cream, ink text, terracotta accent, zero border-radius.
+  Ridgeline Roofing — premium design system (2026 rebuild).
+  Deep-navy / steel-blue corporate palette with an orange conversion accent,
+  soft radii, and layered shadows. Legacy token *names* are preserved and
+  remapped to the new palette so every page adopts the new brand at once.
 */
 @theme {
-  /* Surfaces */
-  --color-cream: #faf8f4; /* page background */
-  --color-ink: #2b2926; /* primary text / dark bands */
-  --color-ink-deep: #242220; /* footer background */
-  --color-panel: #f1ede4; /* selected option fill */
-  --color-panel-soft: #f5f2ea; /* info/summary panels */
-  --color-hover-cream: #f4f0e8; /* card hover fill */
+  /* ===== Surfaces ===== */
+  --color-cream: #f6f8fb; /* page background (was warm cream) */
+  --color-ink: #0f2747; /* primary text + navy dark bands */
+  --color-ink-deep: #0b1220; /* deepest dark section / footer */
+  --color-panel: #eef3f9; /* filled panels / selected states */
+  --color-panel-soft: #f1f5f9; /* soft info panels */
+  --color-hover-cream: #eef3f9; /* card hover fill */
 
-  /* Text */
-  --color-muted: #5b564e; /* body copy */
-  --color-faint: #767061; /* metadata, breadcrumbs — darkened from the design's #8a8375 to pass WCAG AA (4.6:1 on cream) */
-  --color-taupe: #b3ab9a; /* light text on dark bands */
+  /* ===== Text ===== */
+  --color-muted: #47566b; /* body copy (AA on light) */
+  --color-faint: #64748b; /* metadata, breadcrumbs */
+  --color-taupe: #94a3b8; /* light text on dark bands */
 
-  /* Lines */
-  --color-line: #e5e0d6; /* hairline borders on cream */
-  --color-line-strong: #cdc6b8; /* outline buttons, inputs */
-  --color-line-dark: #3a3733; /* footer divider */
-  --color-line-dark-2: #4a453e; /* dark-band divider */
-  --color-line-dark-3: #5a544b; /* outline buttons on dark */
+  /* ===== Lines ===== */
+  --color-line: #e3e8f0; /* hairline borders on light */
+  --color-line-strong: #cbd5e1; /* outline buttons, inputs */
+  --color-line-dark: #1c2a41; /* footer divider on deep dark */
+  --color-line-dark-2: #24344d; /* dark-band divider */
+  --color-line-dark-3: #3a4b66; /* outline buttons on dark */
 
-  /* Accent */
-  --color-terracotta: #b45338;
-  --color-terracotta-deep: #8f3f28; /* accent hover */
-  --color-terracotta-soft: #d98a6a; /* eyebrows on dark */
+  /* ===== Brand ===== */
+  --color-navy: #0f2747;
+  --color-navy-700: #16345c;
+  --color-steel: #355c7d; /* secondary steel blue */
+  --color-steel-deep: #274960;
+  --color-steel-soft: #6b8aa6;
 
-  /* States */
-  --color-success: #7a8a5c;
-  --color-disabled: #b8b2a5;
+  /* ===== Accent (conversion orange) ===== */
+  --color-terracotta: #f97316; /* accent (name kept for compatibility) */
+  --color-terracotta-deep: #ea580c; /* accent hover */
+  --color-terracotta-soft: #fb923c; /* accent on dark bands */
 
-  /* Placeholder texture tones (trust badges, avatar discs) */
-  --color-texture-a: #ece7dd;
-  --color-texture-b: #e3ddd0;
+  /* ===== States ===== */
+  --color-success: #16a34a;
+  --color-disabled: #94a3b8;
 
-  --font-sans: var(--font-archivo), "Archivo", sans-serif;
+  /* Placeholder texture tones */
+  --color-texture-a: #e6ebf3;
+  --color-texture-b: #eef3f9;
+
+  /* ===== Type ===== */
+  --font-display: var(--font-manrope), "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
 
   --tracking-eyebrow: 0.14em;
   --tracking-label: 0.12em;
   --tracking-wordmark: 0.04em;
+
+  /* ===== Radius ===== */
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-3xl: 28px;
+
+  /* ===== Shadows ===== */
+  --shadow-card: 0 1px 2px rgba(15, 39, 71, 0.04), 0 8px 24px -12px rgba(15, 39, 71, 0.12);
+  --shadow-lift: 0 24px 48px -20px rgba(15, 39, 71, 0.28), 0 8px 16px -12px rgba(15, 39, 71, 0.16);
+  --shadow-glow: 0 20px 60px -18px rgba(249, 115, 22, 0.45);
+  --shadow-navy: 0 30px 60px -25px rgba(11, 18, 32, 0.6);
 }
 
 html {
@@ -54,12 +77,23 @@ body {
   color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Display type — Manrope on all primary headings, site-wide */
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+  letter-spacing: -0.02em;
 }
 
 /* Visible keyboard focus everywhere, without polluting mouse interaction */
 :focus-visible {
   outline: 2px solid var(--color-terracotta);
-  outline-offset: 2px;
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 /* Skip link — hidden until focused */
@@ -68,28 +102,49 @@ body {
   left: -9999px;
   z-index: 100;
   background: var(--color-ink);
-  color: var(--color-cream);
+  color: #fff;
   padding: 12px 20px;
   font-weight: 600;
   font-size: 14px;
+  border-radius: 0 0 12px 0;
 }
 .skip-link:focus {
-  left: 12px;
-  top: 12px;
+  left: 0;
+  top: 0;
 }
 
-h1,
-h2,
-h3 {
-  text-wrap: balance;
-}
-
-/* Condensed display headings — the design sets font-stretch: 95% on hero/h1 type */
+/* Condensed display headings retained for compatibility */
 .display-condensed {
   font-stretch: 95%;
 }
 
-/* Diagonal placeholder texture used for not-yet-real assets (badge slots, avatars) */
+/* ===== Global content container =====
+   Centers content to a max 1280px reading width using padding-inline, so
+   full-bleed backgrounds still span the viewport while content stays aligned.
+   Responsive min gutters: 16 / 20 / 24 / 32px (px-4 / 5 / 6 / 8). */
+.shell {
+  width: 100%;
+  padding-inline: max(1rem, calc((100% - 1280px) / 2));
+}
+@media (min-width: 640px) {
+  .shell {
+    padding-inline: max(1.25rem, calc((100% - 1280px) / 2));
+  }
+}
+@media (min-width: 768px) {
+  .shell {
+    padding-inline: max(1.5rem, calc((100% - 1280px) / 2));
+  }
+}
+@media (min-width: 1024px) {
+  .shell {
+    padding-inline: max(2rem, calc((100% - 1280px) / 2));
+  }
+}
+
+/* ===== Decorative helpers ===== */
+
+/* Diagonal placeholder texture used for not-yet-real assets */
 .texture {
   background: repeating-linear-gradient(
     45deg,
@@ -103,4 +158,76 @@ h3 {
     var(--color-texture-a) 0 6px,
     var(--color-texture-b) 6px 12px
   );
+}
+
+/* Subtle dot grid for dark sections */
+.dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Fine blueprint grid for light sections */
+.blueprint-grid {
+  background-image:
+    linear-gradient(rgba(15, 39, 71, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 39, 71, 0.035) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Gradient text accent */
+.text-gradient-accent {
+  background: linear-gradient(90deg, #fb923c, #f97316);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Reusable diagonal top divider for dark bands */
+.diagonal-top {
+  clip-path: polygon(0 40px, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Animated marquee for the trust/logo strip */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 32s linear infinite;
+}
+
+/* Soft pulse used on emergency indicators */
+@keyframes soft-ping {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+.animate-soft-ping {
+  animation: soft-ping 2s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-marquee,
+  .animate-soft-ping {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
 }

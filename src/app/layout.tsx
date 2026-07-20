@@ -1,14 +1,21 @@
 import type { Metadata } from "next";
-import { Archivo } from "next/font/google";
+import { Manrope, Inter } from "next/font/google";
 import { siteConfig } from "@/lib/site-config";
 import { roofingContractorSchema, jsonLd } from "@/lib/structured-data";
 import { BookingModalHost } from "@/components/booking/BookingModal";
 import "./globals.css";
 
-const archivo = Archivo({
-  variable: "--font-archivo",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
-  axes: ["wdth"],
+  display: "swap",
+  weight: ["500", "600", "700", "800"],
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -35,7 +42,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${archivo.variable} antialiased`}>
+      <body
+        className={`${manrope.variable} ${inter.variable} antialiased`}
+        suppressHydrationWarning
+      >
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={jsonLd(roofingContractorSchema())}

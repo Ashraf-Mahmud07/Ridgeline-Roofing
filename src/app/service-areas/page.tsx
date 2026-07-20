@@ -42,8 +42,8 @@ export default function ServiceAreasPage() {
       <Header />
       <main id="main-content">
         {/* ===== Hero + map ===== */}
-        <section aria-label="Page introduction" className="grid border-b border-line lg:grid-cols-2">
-          <div className="flex flex-col gap-5 px-6 pb-12 pt-11 md:px-10 lg:px-14">
+        <section aria-label="Page introduction" className="shell grid items-center gap-8 border-b border-line bg-white lg:grid-cols-2 lg:gap-14">
+          <div className="flex flex-col gap-5 py-10 md:py-12">
             <Breadcrumbs crumbs={[{ name: "Home", href: "/" }, { name: "Service Areas" }]} />
             <h1 className="display-condensed m-0 text-4xl font-[650] leading-[1.02] tracking-[-0.025em] md:text-5xl">
               Where we work
@@ -60,7 +60,7 @@ export default function ServiceAreasPage() {
             </div>
             <ZipCheck />
           </div>
-          <div className="relative min-h-[300px] border-line lg:min-h-[420px] lg:border-l">
+          <div className="relative min-h-[300px] overflow-hidden rounded-2xl shadow-card lg:min-h-[420px]">
             <Image
               src={images.townRooftops.src}
               alt={images.townRooftops.alt}

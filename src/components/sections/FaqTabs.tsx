@@ -11,10 +11,10 @@ export function FaqTabs() {
   const [tab, setTab] = useState(cats[0]);
   return (
     <>
-      <div className="mt-[26px] px-6 pb-7 md:px-10 lg:px-14">
+      <div className="shell mt-[26px] pb-7">
         <FilterChips options={cats} value={tab} onChange={setTab} />
       </div>
-      <div className="grid gap-10 border-t border-line px-6 pb-14 pt-9 md:px-10 lg:grid-cols-[1fr_320px] lg:gap-16 lg:px-14">
+      <div className="shell grid gap-10 border-t border-line pb-14 pt-9 lg:grid-cols-[1fr_320px] lg:gap-16">
         <FaqAccordion key={tab} faqs={faqCategories[tab]} />
         <FaqSidebar />
       </div>

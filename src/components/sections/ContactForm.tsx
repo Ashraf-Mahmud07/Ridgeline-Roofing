@@ -14,7 +14,7 @@ const TOPICS = [
 ];
 
 const inputCls =
-  "border-[1.5px] border-line-strong bg-white px-[18px] py-3.5 text-[15px] text-ink outline-none focus:border-ink";
+  "rounded-xl border-[1.5px] border-line-strong bg-white px-4 py-3.5 text-[15px] text-ink outline-none transition-colors focus:border-terracotta focus:ring-4 focus:ring-terracotta/10";
 
 /** Contact form — client-side validation, server action submit, success state. */
 export function ContactForm() {
@@ -46,7 +46,7 @@ export function ContactForm() {
       <div className="flex max-w-[520px] flex-col gap-[18px] pt-3">
         <div
           aria-hidden
-          className="flex h-13 w-13 items-center justify-center rounded-full bg-success text-2xl text-cream"
+          className="flex h-13 w-13 items-center justify-center rounded-full bg-success text-2xl text-white"
         >
           ✓
         </div>
@@ -111,9 +111,9 @@ export function ContactForm() {
                   type="button"
                   aria-pressed={on}
                   onClick={() => setForm({ ...form, topic: t })}
-                  className={`border-[1.5px] px-[18px] py-2.5 text-[13.5px] font-semibold transition-colors ${
+                  className={`rounded-full border-[1.5px] px-4 py-2.5 text-[13.5px] font-semibold transition-colors ${
                     on
-                      ? "border-ink bg-ink text-cream"
+                      ? "border-ink bg-ink text-white"
                       : "border-line-strong bg-white text-ink hover:border-ink"
                   }`}
                 >
@@ -135,8 +135,10 @@ export function ContactForm() {
           <button
             type="submit"
             disabled={!valid || pending}
-            className={`px-[30px] py-[15px] text-[15px] font-semibold text-cream transition-colors ${
-              valid && !pending ? "bg-ink hover:bg-terracotta" : "cursor-default bg-disabled"
+            className={`rounded-full px-8 py-3.5 text-[15px] font-semibold text-white transition-all ${
+              valid && !pending
+                ? "bg-terracotta shadow-[0_10px_30px_-12px_rgba(249,115,22,0.7)] hover:-translate-y-0.5 hover:bg-terracotta-deep"
+                : "cursor-default bg-disabled"
             }`}
           >
             {pending ? "Sending…" : "Send message"}

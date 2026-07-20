@@ -41,7 +41,7 @@ export default function BlogPage() {
       <main id="main-content">
         {/* ===== Header + filters ===== */}
         <Section label="Learning Center" padded={false} className="pt-11">
-          <div className="px-6 md:px-10 lg:px-14">
+          <div className="shell ">
             <Breadcrumbs
               crumbs={[{ name: "Home", href: "/" }, { name: "Learning Center" }]}
               className="mb-[18px]"
@@ -91,7 +91,7 @@ export default function BlogPage() {
         {/* ===== Newsletter ===== */}
         <section
           aria-label="Newsletter"
-          className="flex flex-col items-start justify-between gap-8 border-b border-line bg-ink px-6 py-12 text-cream md:px-10 lg:flex-row lg:items-center lg:px-14"
+          className="shell flex flex-col items-start justify-between gap-8 border-b border-line bg-ink py-12 text-cream lg:flex-row lg:items-center"
         >
           <div>
             <div className="mb-1.5 text-2xl font-[650] tracking-[-0.02em]">

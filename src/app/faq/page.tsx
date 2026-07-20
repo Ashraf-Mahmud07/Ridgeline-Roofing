@@ -38,7 +38,7 @@ export default function FaqPage() {
       <Header />
       <main id="main-content">
         <Section label="FAQ" padded={false} className="pt-11">
-          <div className="px-6 md:px-10 lg:px-14">
+          <div className="shell ">
             <Breadcrumbs
               crumbs={[{ name: "Home", href: "/" }, { name: "FAQ" }]}
               className="mb-[18px]"

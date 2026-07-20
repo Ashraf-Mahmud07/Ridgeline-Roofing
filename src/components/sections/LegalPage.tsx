@@ -73,7 +73,7 @@ export function LegalPage({
           </div>
         </div>
       </main>
-      <footer className="bg-ink-deep px-6 py-9 text-taupe md:px-10 lg:px-14">
+      <footer className="shell bg-ink-deep py-9 text-taupe">
         <div className="flex flex-col items-start justify-between gap-4 text-[12.5px] sm:flex-row sm:items-center">
           <Logo variant="light" size={22} />
           <span>© 2026 {siteConfig.name}. All rights reserved.</span>

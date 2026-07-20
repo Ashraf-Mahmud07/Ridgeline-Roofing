@@ -12,10 +12,10 @@ export function ProjectsGrid() {
     filter === "All" ? projects : projects.filter((p) => p.category === filter);
   return (
     <>
-      <div className="mt-7 px-6 pb-7 md:px-10 lg:px-14">
+      <div className="shell mt-7 pb-7">
         <FilterChips options={projectCategories} value={filter} onChange={setFilter} />
       </div>
-      <div className="border-t border-line px-6 pb-13 pt-9 md:px-10 lg:px-14">
+      <div className="shell border-t border-line pb-13 pt-9">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {visible.map((prj) => (
             <ProjectCard

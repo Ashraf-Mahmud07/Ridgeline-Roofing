@@ -49,8 +49,8 @@ export default function AboutPage() {
       <Header />
       <main id="main-content">
         {/* ===== Hero ===== */}
-        <section aria-label="Page introduction" className="grid border-b border-line lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="flex flex-col gap-[22px] px-6 pb-12 pt-11 md:px-10 lg:px-14">
+        <section aria-label="Page introduction" className="shell grid items-center gap-8 border-b border-line bg-white lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+          <div className="flex flex-col gap-[22px] py-10 md:py-12">
             <Breadcrumbs crumbs={[{ name: "Home", href: "/" }, { name: "About Us" }]} />
             <h1 className="display-condensed m-0 text-4xl font-[650] leading-[1.02] tracking-[-0.025em] md:text-[52px]">
               Roofers first. Salespeople never.
@@ -68,7 +68,7 @@ export default function AboutPage() {
               <Stat value={`★ ${siteConfig.stats.avgRating}`} label="Avg. rating" size="lg" />
             </div>
           </div>
-          <div className="relative min-h-[300px] lg:min-h-[400px]">
+          <div className="relative min-h-[300px] overflow-hidden rounded-2xl shadow-card lg:min-h-[400px]">
             <Image
               src={images.constructionCrewSite.src}
               alt={images.constructionCrewSite.alt}
@@ -175,7 +175,7 @@ export default function AboutPage() {
         {/* ===== Careers strip ===== */}
         <section
           aria-label="Careers"
-          className="flex flex-col items-start justify-between gap-5 bg-terracotta px-6 py-[26px] text-cream sm:flex-row sm:items-center md:px-10 lg:px-14"
+          className="shell flex flex-col items-start justify-between gap-5 bg-terracotta py-[26px] text-white sm:flex-row sm:items-center"
         >
           <span className="text-[17px] font-semibold">
             Good with your hands and tired of bad employers? We&apos;re hiring installers and

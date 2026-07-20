@@ -13,10 +13,10 @@ export function BlogGrid() {
   const visible = filter === "All" ? posts : posts.filter((p) => p.category === filter);
   return (
     <>
-      <div className="mt-[26px] px-6 pb-7 md:px-10 lg:px-14">
+      <div className="shell mt-[26px] pb-7">
         <FilterChips options={postCategories} value={filter} onChange={setFilter} />
       </div>
-      <div className="border-t border-line px-6 pb-13 pt-9 md:px-10 lg:px-14">
+      <div className="shell border-t border-line pb-13 pt-9">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {visible.map((p) => {
             const img = images[p.image];
